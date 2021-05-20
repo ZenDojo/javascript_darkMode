@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        referrerpolicy="no-referrer" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: all 0.3s ease-out;
+        }
+
+        body.dark {
+            background-color: #292C35;
+        }
+
+        body.dark p {
+            color: #fff;
+        }
+
+        #checkbox {
+            display: none;
+        }
+
+        .label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 50px;
+            height: 30px;
+            background-color: #111111;
+            border-radius: 30px;
+            color: #f39c12;
+            padding: 5px;
+            position: relative;
+        }
+
+        .ball {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background-color: #fff;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            transition: all 0.3s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="checkbox" id="checkbox" class="checkbox">
+        <label for="checkbox" class="label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <div class="ball"></div>
+        </label>
+    </div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi fuga molestiae expedita nobis sed voluptatem quae
+        dolores autem voluptate a.</p>
+
+    <script>
+        let darkMode = localStorage.getItem('darkMode')
+        const ball = document.querySelector('.ball')
+
+        let enableDarkMode = () => {
+            localStorage.setItem('darkMode', 'enabled')
+            document.body.className = 'dark'
+            ball.style.transform = `translateX(20px)`
+
+        }
+
+        let disableDarkMode = () => {
+            localStorage.setItem('darkMode', '')
+            document.body.className = ''
+            ball.style.transform = `translateX(0px)`
+
+        }
+
+        if (darkMode == 'enabled') {
+            enableDarkMode()
+        }
+
+        const toggleButton = document.querySelector("#checkbox")
+        toggleButton.addEventListener("change", () => {
+            darkMode = localStorage.getItem('darkMode')
+            if (darkMode == 'enabled') {
+                disableDarkMode()
+            } else {
+                enableDarkMode()
+            }
+        })
+    </script>
+</body>
+
+</html>
